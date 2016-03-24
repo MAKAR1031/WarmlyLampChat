@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="room.xhtml" x="277" y="495" zoom="true"/>
+        <Node id="advertiser_index.xhtml" x="561" y="361" zoom="true"/>
+        <Node id="pay_ad.xhtml" x="791" y="580" zoom="true"/>
+        <Node id="errors/exception.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="create_ad.xhtml" x="372" y="579" zoom="true"/>
+        <Node id="edit_ad.xhtml" x="588" y="580" zoom="true"/>
+        <Node id="login.xhtml" x="584" y="160" zoom="true"/>
+        <Node id="user_index.xhtml" x="142" y="371" zoom="true"/>
+        <Node id="create_room.xhtml" x="42" y="546" zoom="true"/>
+        <Node id="register.xhtml" x="991" y="52" zoom="true"/>
+        <Node id="moderator_index.xhtml" x="967" y="401" zoom="true"/>
+        <Node id="errors/404.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="templates/template.xhtml" x="104" y="47" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

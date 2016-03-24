@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./templates/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="title">
+        Создание рекламного блока
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h1><h:outputText value="Создание блока рекламы"/></h1>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Title:" for="title" />
+                <h:inputText id="title" value="#{advertiserController.adBlock.title}" title="Title" />
+                <h:outputLabel value="Content:" for="content" />
+                <h:inputText id="content" value="#{advertiserController.adBlock.content}" title="Content" />
+                <h:outputLabel value="DaysOfActive:" for="daysOfActive" />
+                <h:inputText id="daysOfActive" value="#{advertiserController.adBlock.daysOfActive}" title="DaysOfActive" />
+            </h:panelGrid>
+            <h:commandButton action="#{advertiserController.createAdBlockConfirm()}" value="Создать"/>
+        </h:form>
+        <h:button outcome="index" value="На главную"/>
+    </ui:define>
+</ui:composition>

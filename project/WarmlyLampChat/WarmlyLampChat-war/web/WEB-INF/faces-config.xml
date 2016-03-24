@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>register</from-outcome>
+            <to-view-id>/register.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>user_login</from-outcome>
+            <to-view-id>/user_index.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>advertiset_login</from-outcome>
+            <to-view-id>/advertiser_index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>moderator_login</from-outcome>
+            <to-view-id>/moderator_index.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/user_index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>room</from-outcome>
+            <to-view-id>/room.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>create_room</from-outcome>
+            <to-view-id>/create_room.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/advertiser_index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>create_ad</from-outcome>
+            <to-view-id>/create_ad.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit_ad</from-outcome>
+            <to-view-id>/edit_ad.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>pay_ad</from-outcome>
+            <to-view-id>/pay_ad.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/create_ad.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/advertiser_index.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/edit_ad.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/advertiser_index.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/pay_ad.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/advertiser_index.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/create_room.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/user_index.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/room.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/user_index.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/register.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/moderator_index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
