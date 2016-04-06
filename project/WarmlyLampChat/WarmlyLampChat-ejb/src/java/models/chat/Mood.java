@@ -1,4 +1,4 @@
-package models.ad;
+package models.chat;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -9,8 +9,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "statuses")
-public class Status implements Serializable {
+@Table(name = "moods")
+public class Mood implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

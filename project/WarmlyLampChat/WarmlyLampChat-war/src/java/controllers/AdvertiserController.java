@@ -7,6 +7,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import models.ad.AdBlock;
+import models.chat.ChatUser;
 import services.AdvertiserServiceLocal;
 
 @Named
@@ -15,6 +16,7 @@ public class AdvertiserController implements Serializable{
 
     @EJB
     private AdvertiserServiceLocal advertiserService;
+    private ChatUser currentUser;
     
     private List<AdBlock> adBlocks;
     private AdBlock adBlock;
@@ -25,7 +27,7 @@ public class AdvertiserController implements Serializable{
     
     @PostConstruct
     private void onCreate() {
-        adBlocks = advertiserService.getAdBlocks();
+        adBlocks = advertiserService.getAdBlocksByAdvertiser(currentUser);
     }
 
     public AdBlock getAdBlock() {

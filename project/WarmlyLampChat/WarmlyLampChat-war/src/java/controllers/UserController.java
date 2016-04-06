@@ -56,7 +56,7 @@ public class UserController implements Serializable {
     }
 
     public List<Room> getAllRooms() {
-        return chatService.getChatDAO().getAllRooms();
+        return chatService.getAllRooms();
     }
     
     public String createRoom() {
@@ -70,7 +70,6 @@ public class UserController implements Serializable {
     }
 
     public String enterToRoom(int idRoom) {
-        this.currentRoom = chatService.getChatDAO().getAllRooms().get(0);
         return "room";
     }
 

@@ -1,62 +1,63 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import javax.ejb.Local;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import models.chat.ChatUser;
 import models.chat.Room;
 
 @Stateless
-@LocalBean
-@Local(ChatDAOReadAccessible.class)
-public class ChatDAO implements ChatDAOReadAccessible {
+public class ChatDAO implements ChatDAOLocal {
+    
+    @PersistenceContext(unitName = "WarmlyLampChat-ejbPU-Chat")
+    private EntityManager em;
 
     @Override
     public List<Room> getAllRooms() {
-        List<Room> rooms = new ArrayList<>();
-        Room room = new Room();
-        room.setId(1);
-        room.setName("Тестовая комната");
-        rooms.add(room);
-        return rooms;
+        Query query = em.createQuery("SELECT r FROM Room r", Room.class);
+        return query.getResultList();
     }
 
     @Override
     public Room getRoomById(Integer id) {
-        return new Room();
+        return em.find(Room.class, id);
     }
-    
+
+    @Override
     public void createRoom(Room room) {
-        
+        em.persist(room);
     }
-    
-    public void updateRoom(Room room) {
-        
+
+    @Override
+    public void mergeRoom(Room room) {
+        em.merge(room);
     }
-    
+
+    @Override
     public void removeRoom(Room room) {
-        
+        em.remove(em.merge(room));
     }
-    
+
+    @Override
     public List<ChatUser> getAllUsers() {
-        return new ArrayList<>();
+        Query query = em.createQuery("SELECT u FROM ChatUser u", ChatUser.class);
+        return query.getResultList();
     }
-    
+
+    @Override
     public ChatUser getUserById(Integer id) {
-        return new ChatUser();
+        return em.find(ChatUser.class, id);
     }
-    
-    public void createUser(ChatUser user) {
-        
+
+    @Override
+    public void mergeUser(ChatUser user) {
+        em.merge(user);
     }
-    
-    public void updateUser(ChatUser user) {
-        
-    }
-    
+
+    @Override
     public void removeUser(ChatUser user) {
-        
+        em.remove(em.merge(user));
     }
 }

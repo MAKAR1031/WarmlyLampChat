@@ -1,6 +1,7 @@
 package services.impl;
 
-import dao.ChatDAO;
+import dao.ChatDAOLocal;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import models.chat.ChatUser;
@@ -10,15 +11,9 @@ import services.ChatServiceLocal;
 
 @Stateless
 public class ChatService implements ChatServiceLocal {
-
     @EJB
-    private ChatDAO chatDAO;
+    private ChatDAOLocal chatDAO;
 
-    @Override
-    public ChatDAO getChatDAO() {
-        return chatDAO;
-    }
-    
     @Override
     public void enterToRoom(Room room, ChatUser user) {
         
@@ -32,5 +27,10 @@ public class ChatService implements ChatServiceLocal {
     @Override
     public void sendMessage(Room room, Message message) {
         
+    }
+
+    @Override
+    public List<Room> getAllRooms() {
+        return chatDAO.getAllRooms();
     }
 }

@@ -1,36 +1,54 @@
 package models.ad;
 
+import models.chat.Mood;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import models.Mood;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
+@Table(name = "adblocks")
 public class AdBlock implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
+    
+    @NotNull
+    @Size(min = 5, max = 30)
     private String title;
+    
+    @NotNull
+    @Size(min = 10)
     private String content;
-    @ManyToOne
-    private Mood targetMood;
+    
     @Temporal(TemporalType.DATE)
     private Date activationDate;
+    
     private Integer daysOfActive;
-    @ManyToOne
+    
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Status status;
 
-    public Integer getId() {
+    private int targetMoodId;
+    
+    @Transient
+    private Mood targetMood;
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -48,14 +66,6 @@ public class AdBlock implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Mood getTargetMood() {
-        return targetMood;
-    }
-
-    public void setTargetMood(Mood targetMood) {
-        this.targetMood = targetMood;
     }
 
     public Date getActivationDate() {
@@ -80,5 +90,21 @@ public class AdBlock implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public int getTargetMoodId() {
+        return targetMoodId;
+    }
+
+    public void setTargetMoodId(int targetMoodId) {
+        this.targetMoodId = targetMoodId;
+    }
+
+    public Mood getTargetMood() {
+        return targetMood;
+    }
+
+    public void setTargetMood(Mood targetMood) {
+        this.targetMood = targetMood;
     }
 }

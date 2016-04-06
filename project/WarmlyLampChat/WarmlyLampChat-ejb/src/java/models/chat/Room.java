@@ -8,26 +8,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import models.Mood;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "rooms")
 public class Room implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
+
+    @NotNull
     private String name;
+
     @OneToMany
     private List<ChatUser> users;
+
     @OneToMany
     private List<Message> messages;
+
     @ManyToOne
     private Mood currentMood;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

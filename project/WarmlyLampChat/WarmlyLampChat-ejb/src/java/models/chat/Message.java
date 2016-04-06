@@ -7,17 +7,25 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "messages")
 public class Message implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @NotNull
     private String content;
+
     @ManyToOne
     private ChatUser sender;
+
     @Temporal(TemporalType.DATE)
     private Date sendDate;
 
@@ -52,6 +60,4 @@ public class Message implements Serializable {
     public void setSendDate(Date sendDate) {
         this.sendDate = sendDate;
     }
-    
-    
 }
