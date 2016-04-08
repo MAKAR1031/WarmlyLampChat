@@ -9,7 +9,9 @@ import models.chat.Room;
 @Local
 public interface ChatServiceLocal {
     List<Room> getAllRooms();
-    void enterToRoom(Room room, ChatUser user);
-    void leaveRoom(Room room, ChatUser user);
+    void createRoom(Room room);
+    Room enterToRoom(int idRoom, int idUser);
+    void leaveRoom(int idRoom, int idUser);
     void sendMessage(Room room, Message message);
+    ChatUser getUserById(int id);
 }

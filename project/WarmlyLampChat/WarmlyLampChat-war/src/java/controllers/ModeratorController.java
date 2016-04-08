@@ -10,22 +10,20 @@ import services.ModeratorServiceLocal;
 
 @Named
 @SessionScoped
-public class ModeratorController implements Serializable{
+public class ModeratorController implements Serializable {
 
     @EJB
     private ModeratorServiceLocal moderatorService;
-    
+
     public void approveAd(int idAd) {
-        
+        moderatorService.approveAd(idAd);
     }
-    
+
     public void rejectAd(int idAd) {
-        
+        moderatorService.rejectAd(idAd);
     }
 
     public List<AdBlock> getAdBlocks() {
-        return moderatorService.getAdBlocks();
+        return moderatorService.getConsiderationAdBlocks();
     }
-    
-    
 }

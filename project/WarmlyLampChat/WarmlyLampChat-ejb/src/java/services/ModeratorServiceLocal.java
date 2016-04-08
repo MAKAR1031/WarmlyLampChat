@@ -6,7 +6,7 @@ import models.ad.AdBlock;
 
 @Local
 public interface ModeratorServiceLocal {
-    void approveAd(AdBlock ad);
-    void rejectAd(AdBlock ad);
-    List<AdBlock> getAdBlocks();
+    void approveAd(int id);
+    void rejectAd(int id);
+    List<AdBlock> getConsiderationAdBlocks();
 }

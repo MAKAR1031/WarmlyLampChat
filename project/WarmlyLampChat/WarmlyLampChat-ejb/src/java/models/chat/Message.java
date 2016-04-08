@@ -2,6 +2,7 @@ package models.chat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -59,5 +60,27 @@ public class Message implements Serializable {
 
     public void setSendDate(Date sendDate) {
         this.sendDate = sendDate;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Message other = (Message) obj;
+        return Objects.equals(this.id, other.id);
     }
 }

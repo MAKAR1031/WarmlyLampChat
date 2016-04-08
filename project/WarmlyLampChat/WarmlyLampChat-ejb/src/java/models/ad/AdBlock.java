@@ -1,6 +1,5 @@
 package models.ad;
 
-import models.chat.Mood;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -15,34 +14,42 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import models.chat.ChatUser;
+import models.chat.Mood;
 
 @Entity
 @Table(name = "adblocks")
 public class AdBlock implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     @Size(min = 5, max = 30)
     private String title;
-    
+
     @NotNull
     @Size(min = 10)
     private String content;
-    
+
     @Temporal(TemporalType.DATE)
     private Date activationDate;
-    
+
     private Integer daysOfActive;
-    
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Status status;
 
     private int targetMoodId;
     
+    @NotNull
+    private int advertiserId;
+
     @Transient
     private Mood targetMood;
+    @Transient
+    private ChatUser advertiser;
 
     public int getId() {
         return id;
@@ -107,4 +114,43 @@ public class AdBlock implements Serializable {
     public void setTargetMood(Mood targetMood) {
         this.targetMood = targetMood;
     }
+
+    public int getAdvertiserId() {
+        return advertiserId;
+    }
+
+    public void setAdvertiserId(int advertiserId) {
+        this.advertiserId = advertiserId;
+    }
+
+    public ChatUser getAdvertiser() {
+        return advertiser;
+    }
+
+    public void setAdvertiser(ChatUser advertiser) {
+        this.advertiser = advertiser;
+    }
+    
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + this.id;
+        return hash;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final AdBlock other = (AdBlock) obj;
+        return this.id == other.id;
+    }
+
 }

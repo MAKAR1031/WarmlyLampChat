@@ -3,12 +3,15 @@ package dao;
 import java.util.List;
 import javax.ejb.Local;
 import models.ad.AdBlock;
+import models.ad.Status;
 
 @Local
 public interface AdDAOLocal {
     List<AdBlock> getAdBlocksByAdvertiser(int idAdvertiser);
+    List<AdBlock> getAdBlocksByStatus(String status);
     AdBlock getAdBlockById(int id);
-    public void createAdBlock(AdBlock ad);
-    public void mergeAdBlock(AdBlock ad);
-    public void removeAdBlock(AdBlock ad);
+    void createAdBlock(AdBlock ad);
+    void mergeAdBlock(AdBlock ad);
+    void removeAdBlock(AdBlock ad);
+    Status getStatusByName(String name);
 }

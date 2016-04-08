@@ -3,6 +3,7 @@ package controllers;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -21,38 +22,31 @@ public class UserController implements Serializable {
     private ChatUser currentUser;
     private Room currentRoom;
     private Room room;
-    private String message;
+    private String messageText;
+    
+    @PostConstruct
+    private void onCreate() {
+        currentUser = chatService.getUserById(1);
+    }
 
     public ChatUser getCurrentUser() {
         return currentUser;
     }
-
-    public void setCurrentUser(ChatUser currentUser) {
-        this.currentUser = currentUser;
-    }
-
+    
     public Room getCurrentRoom() {
         return currentRoom;
-    }
-
-    public void setCurrentRoom(Room currentRoom) {
-        this.currentRoom = currentRoom;
     }
 
     public Room getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public String getMessageText() {
+        return messageText;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
     }
 
     public List<Room> getAllRooms() {
@@ -65,25 +59,28 @@ public class UserController implements Serializable {
     }
 
     public String createRoomConfirm() {
-        //?
+        chatService.createRoom(room);
+        room = null;
         return "index";
     }
 
     public String enterToRoom(int idRoom) {
+        currentRoom = chatService.enterToRoom(idRoom, currentUser.getId());
         return "room";
     }
 
     public String leaveRoom() {
-        this.currentRoom = null;
+        chatService.leaveRoom(currentRoom.getId(), currentUser.getId());
+        currentRoom = null;
         return "index";
     }
     
     public void sendMessage() {
-        Message newMessage = new Message();
-        newMessage.setContent(message);
-        newMessage.setSender(currentUser);
-        newMessage.setSendDate(new Date());
-        chatService.sendMessage(room, newMessage);
-        message = "";
+        Message message = new Message();
+        message.setContent(messageText);
+        message.setSendDate(new Date());
+        message.setSender(currentUser);
+        chatService.sendMessage(currentRoom, message);
+        messageText = "";
     }
 }

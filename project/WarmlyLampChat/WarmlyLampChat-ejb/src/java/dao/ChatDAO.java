@@ -10,10 +10,10 @@ import models.chat.Room;
 
 @Stateless
 public class ChatDAO implements ChatDAOLocal {
-    
-    @PersistenceContext(unitName = "WarmlyLampChat-ejbPU-Chat")
-    private EntityManager em;
 
+    @PersistenceContext(unitName = "WarmlyLampChat-ejbPUChat")
+    private EntityManager em;
+    
     @Override
     public List<Room> getAllRooms() {
         Query query = em.createQuery("SELECT r FROM Room r", Room.class);
@@ -59,5 +59,9 @@ public class ChatDAO implements ChatDAOLocal {
     @Override
     public void removeUser(ChatUser user) {
         em.remove(em.merge(user));
+    }
+
+    public void persist(Object object) {
+        em.persist(object);
     }
 }

@@ -2,9 +2,10 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./templates/template.xhtml"
+                template="./../../templates/template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:define name="title">
         Главная страница рекламодателя
     </ui:define>
@@ -49,8 +50,12 @@
                     <f:facet name="header">
                         <h:outputText value="Действия"/>
                     </f:facet>
-                    <h:commandButton action="#{advertiserController.editAdBlock(item.id)}" value="Редактировать"/>
-                    <h:commandButton action="#{advertiserController.payForAdBlock(item.id)}" value="Оплатить"/>
+                    <h:commandButton action="#{advertiserController.editAdBlock(item.id)}" value="Редактировать" 
+                                     rendered="#{item.status.name=='Создан' || item.status.name=='Отклонен'}"/>
+                    <h:commandButton action="#{advertiserController.activateAdBlock(item.id)}" value="Активировать" 
+                                     rendered="#{item.status.name=='Создан'}"/>
+                    <h:commandButton action="#{advertiserController.payForAdBlock(item.id)}" value="Оплатить" 
+                                     rendered="#{item.status.name=='Одобрен'}"/>
                 </h:column>
             </h:dataTable>
             <h:commandButton action="#{advertiserController.createAdBlock()}" value="Создать рекламный блок"/>

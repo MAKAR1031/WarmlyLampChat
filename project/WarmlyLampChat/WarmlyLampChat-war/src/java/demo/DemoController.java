@@ -44,7 +44,7 @@ public class DemoController implements Serializable {
             case "moderator":
                 return "moderator_login";
             case "advertiser":
-                return "advertiset_login";
+                return "advertiser_login";
             default:
                 throw new AssertionError();
         }

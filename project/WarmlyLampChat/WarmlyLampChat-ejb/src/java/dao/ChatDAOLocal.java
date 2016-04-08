@@ -9,11 +9,11 @@ import models.chat.Room;
 public interface ChatDAOLocal {
     List<Room> getAllRooms();
     Room getRoomById(Integer id);
-    public void createRoom(Room room);
-    public void mergeRoom(Room room);
-    public void removeRoom(Room room);
-    public List<ChatUser> getAllUsers();
-    public ChatUser getUserById(Integer id);
-    public void mergeUser(ChatUser user);
-    public void removeUser(ChatUser user);
+    void createRoom(Room room);
+    void mergeRoom(Room room);
+    void removeRoom(Room room);
+    List<ChatUser> getAllUsers();
+    ChatUser getUserById(Integer id);
+    void mergeUser(ChatUser user);
+    void removeUser(ChatUser user);
 }

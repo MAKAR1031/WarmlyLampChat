@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.ChatDAOLocal;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -15,59 +16,63 @@ import services.AdvertiserServiceLocal;
 public class AdvertiserController implements Serializable{
 
     @EJB
+    private ChatDAOLocal dao;
+    
+    @EJB
     private AdvertiserServiceLocal advertiserService;
     private ChatUser currentUser;
-    
-    private List<AdBlock> adBlocks;
     private AdBlock adBlock;
-
-    public AdvertiserController() {
-        adBlock = new AdBlock();
-    }
     
     @PostConstruct
     private void onCreate() {
-        adBlocks = advertiserService.getAdBlocksByAdvertiser(currentUser);
+        currentUser = dao.getUserById(2);
     }
 
     public AdBlock getAdBlock() {
         return adBlock;
     }
 
-    public void setAdBlock(AdBlock adBlock) {
-        this.adBlock = adBlock;
-    }
-
     public List<AdBlock> getAdBlocks() {
-        return adBlocks;
+        return advertiserService.getAdBlocksByAdvertiser(currentUser);
     }
 
-    public void setAdBlocks(List<AdBlock> adBlocks) {
-        this.adBlocks = adBlocks;
-    }
-    
     public String createAdBlock() {
         this.adBlock = new AdBlock();
         return "create_ad";
     }
     
     public String createAdBlockConfirm() {
+        advertiserService.createAdBlock(adBlock, currentUser.getId());
+        return "index";
+    }
+    
+    public String activateAdBlock(int idAd) {
+        adBlock = advertiserService.getAdBlockById(idAd);
+        return "activate_ad";
+    }
+    
+    public String activateAdBlockConfirm() {
+        advertiserService.activateAd(adBlock);
         return "index";
     }
     
     public String editAdBlock(int idAd) {
+        adBlock = advertiserService.getAdBlockById(idAd);
         return "edit_ad";
     }
     
     public String editAdBlockConfirm() {
+        advertiserService.updateAd(adBlock);
         return "index";
     }
     
     public String payForAdBlock(int id) {
+        adBlock = advertiserService.getAdBlockById(id);
         return "pay_ad";
     }
     
     public String payForAdBlockConfirm() {
+        advertiserService.payForAd(adBlock);
         return "index";
     }
 }

@@ -11,10 +11,11 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "moods")
 public class Mood implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     private String name;
 
@@ -33,4 +34,27 @@ public class Mood implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Mood other = (Mood) obj;
+        return this.id == other.id;
+    }
+
 }
