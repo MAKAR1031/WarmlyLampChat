@@ -4,7 +4,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../../templates/template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">
         Комната
@@ -12,30 +13,23 @@
 
     <ui:define name="content">
         <h1><h:outputText value="Сообщения комнаты: #{userController.currentRoom.name}"/></h1>
-        <h:dataTable value="#{userController.currentRoom.messages}" var="item">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Сообщение"/>
-                </f:facet>
-                <h:outputText value="#{item.content}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Отправитель"/>
-                </f:facet>
-                <h:outputText value="#{item.sender.nickName}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Дата"/>
-                </f:facet>
-                <h:outputText value="#{item.sendDate}">
-                    <f:convertDateTime pattern="dd.MM.yyyy hh:mm" />
-                </h:outputText>
-            </h:column>
-        </h:dataTable>
+        <c:forEach items="#{userController.currentRoom.messages}" var="message">
+            <div class="message">
+                <div class="sender">
+                    <h:outputText value="#{message.sender.nickName}"/>
+                </div>
+                <div class="content">
+                    <h:outputText value="#{message.content}"/>
+                </div>
+                <div class="date">
+                    <h:outputText value="#{message.sendDate}">
+                        <f:convertDateTime pattern="dd.MM.yyyy"/>
+                    </h:outputText>
+                </div>
+            </div>
+        </c:forEach>
         <h:form>
-            <h:inputTextarea value="#{userController.messageText}"/><br/>
+            <h:inputTextarea value="#{userController.messageText}" class="input_message"/>
             <h:commandButton action="#{userController.sendMessage()}" value="Отправить"/><br/>
             <h:commandButton action="#{userController.leaveRoom()}" value="Выйти из комнаты"/>
         </h:form>

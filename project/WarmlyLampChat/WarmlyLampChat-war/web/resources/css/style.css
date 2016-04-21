@@ -23,3 +23,37 @@ body {
     background-color: snow;
     padding: 10px;
 }
+
+.message {
+    width: 90%;
+    margin: 5px auto;
+    background-color: lightblue;
+    padding: 10px;
+    border-radius: 15px;
+    transition: all 0.5s;
+}
+
+.message:hover {
+    background-color: lightgreen;
+}
+
+.message .sender {
+    display: inline-block;
+    width: 10%;
+}
+
+.message .content {
+    display: inline-block;
+    width: 70%;
+}
+
+.message .date {
+    display: inline-block;
+    width: 15%;
+    text-align: right;
+}
+
+.input_message {
+    width: 75%;
+    outline: none;
+}

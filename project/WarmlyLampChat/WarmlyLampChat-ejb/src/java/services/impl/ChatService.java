@@ -18,7 +18,9 @@ public class ChatService implements ChatServiceLocal {
     public Room enterToRoom(int idRoom, int idUser) {
         Room room = chatDAO.getRoomById(idRoom);
         ChatUser user = chatDAO.getUserById(idUser);
-        room.getUsers().add(user);
+        if (!room.getUsers().contains(user)) {
+            room.getUsers().add(user);
+        }
         return room;
     }
 
