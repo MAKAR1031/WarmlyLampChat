@@ -1,28 +1,25 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./../templates/template.xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                template="./../templates/template.xhtml">
 
     <ui:define name="title">
         Страница авторизации
     </ui:define>
 
     <ui:define name="content">
+        <h:messages/>
         <h:form>
             <h:panelGrid columns="2">
-                <h:outputText value="Логин"/>
-                <h:inputText value="#{demoController.userData.login}"/>
-                <h:outputText value="Пароль"/>
-                <h:inputSecret value="#{demoController.userData.password}"/>
-                <h:outputText value="Хочу быть"/>
-                <h:selectOneMenu value="#{demoController.userData.role}">
-                    <f:selectItems value="#{demoController.roles}"/>
-                </h:selectOneMenu> 
-                <h:commandButton action="#{demoController.login()}" value="Войти"/>
-                <h:button outcome="register" value="Зарегестрироваться"/>
+                <h:outputLabel for="login" value="Логин"/>
+                <h:inputText value="#{authController.loginData.login}" id="login"/>
+                <h:outputLabel for="password" value="Пароль"/>
+                <h:inputSecret value="#{authController.loginData.password}" id="password"/>
+                <h:commandButton action="#{authController.login()}" value="Войти"/>
             </h:panelGrid>
         </h:form>
+        <h:button outcome="register" value="Зарегистрироваться"/>
     </ui:define>
 </ui:composition>

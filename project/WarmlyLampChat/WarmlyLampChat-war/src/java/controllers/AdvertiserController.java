@@ -10,10 +10,14 @@ import javax.inject.Named;
 import models.ad.AdBlock;
 import models.chat.ChatUser;
 import services.AdvertiserServiceLocal;
+import services.AuthServiceLocal;
 
 @Named
 @SessionScoped
 public class AdvertiserController implements Serializable{
+
+    @EJB
+    private AuthServiceLocal authService;
 
     @EJB
     private ChatDAOLocal dao;
@@ -25,7 +29,7 @@ public class AdvertiserController implements Serializable{
     
     @PostConstruct
     private void onCreate() {
-        currentUser = dao.getUserById(2);
+        currentUser = authService.getCurrentUser();
     }
 
     public AdBlock getAdBlock() {

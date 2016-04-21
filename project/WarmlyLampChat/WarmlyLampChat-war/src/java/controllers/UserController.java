@@ -10,6 +10,7 @@ import javax.inject.Named;
 import models.chat.ChatUser;
 import models.chat.Message;
 import models.chat.Room;
+import services.AuthServiceLocal;
 import services.ChatServiceLocal;
 
 @Named
@@ -17,8 +18,11 @@ import services.ChatServiceLocal;
 public class UserController implements Serializable {
 
     @EJB
+    private AuthServiceLocal authService;
+    
+    @EJB
     private ChatServiceLocal chatService;
-
+    
     private ChatUser currentUser;
     private Room currentRoom;
     private Room room;
@@ -26,7 +30,7 @@ public class UserController implements Serializable {
     
     @PostConstruct
     private void onCreate() {
-        currentUser = chatService.getUserById(1);
+        currentUser = authService.getCurrentUser();
     }
 
     public ChatUser getCurrentUser() {

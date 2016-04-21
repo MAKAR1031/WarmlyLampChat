@@ -34,7 +34,7 @@
                     <h:commandButton action="#{moderatorController.rejectAd(ad.id)}" value="Отклонить"/>
                 </h:column>
             </h:dataTable>
-            <h:button outcome="logout" value="Выйти из аккаунта"/>
+            <h:commandButton action="#{authController.logout()}" value="Выйти из учетной записи"/>
         </h:form>
 
     </ui:define>

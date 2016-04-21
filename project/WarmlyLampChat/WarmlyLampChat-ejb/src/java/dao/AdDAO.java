@@ -22,10 +22,10 @@ public class AdDAO implements AdDAOLocal {
         List<AdBlock> adBlocks = query.getResultList();
         Status status = getStatusByName("Создан");
         adBlocks.stream().forEach(ad -> {
-            if (Duration.ofMillis(System.currentTimeMillis() - ad.getActivationDate().getTime()).toDays() > ad.getDaysOfActive()) {
+            if (ad.getActivationDate() != null && Duration.ofMillis(System.currentTimeMillis() - ad.getActivationDate().getTime()).toDays() > ad.getDaysOfActive()) {
                 ad.setStatus(status);
             }
-         });
+         });    
         return adBlocks;
     }
 

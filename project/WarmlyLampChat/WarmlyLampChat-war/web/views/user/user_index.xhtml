@@ -28,7 +28,7 @@
                 </h:column>
             </h:dataTable>
             <h:commandButton action="#{userController.createRoom()}" value="Создать комнату"/>
-            <h:button outcome="logout" value="Выйти из учетной записи"/>
+            <h:commandButton action="#{authController.logout()}" value="Выйти из учетной записи"/>
         </h:form>
     </ui:define>
 </ui:composition>

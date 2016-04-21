@@ -1,6 +1,9 @@
 package models.chat;
 
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,8 +23,12 @@ public class ChatUser implements Serializable {
 
     @NotNull
     @Size(min = 5, max = 30)
+    @Column(unique = true)
     private String nickName;
-
+    
+    @NotNull
+    private String password;
+    
     @NotNull
     @Size(min = 20, max = 70)
     private String fio;
@@ -43,6 +50,10 @@ public class ChatUser implements Serializable {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public void setPassword(String password) {
+        this.password = encryptPassword(password);
     }
 
     public String getFio() {
@@ -81,5 +92,24 @@ public class ChatUser implements Serializable {
         }
         final ChatUser other = (ChatUser) obj;
         return this.id == other.id;
+    }
+
+    private String encryptPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(password.getBytes());
+            byte byteData[] = md.digest();
+            StringBuilder hexString = new StringBuilder();
+            for (byte b : byteData) {
+                String hex = Integer.toHexString(0xff & b);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException ex) {
+            return password;
+        }
     }
 }

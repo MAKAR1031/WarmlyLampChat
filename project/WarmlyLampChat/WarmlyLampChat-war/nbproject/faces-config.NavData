@@ -2,20 +2,20 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="views/user/create_room.xhtml" x="30" y="511" zoom="true"/>
-        <Node id="errors/exception.xhtml" x="58" y="49" zoom="true"/>
-        <Node id="views/register.xhtml" x="588" y="66" zoom="true"/>
-        <Node id="views/user/user_index.xhtml" x="192" y="391" zoom="true"/>
-        <Node id="views/login.xhtml" x="586" y="163" zoom="true"/>
-        <Node id="views/advertiser/advertiser_index.xhtml" x="1033" y="252" zoom="true"/>
-        <Node id="views/advertiser/pay_ad.xhtml" x="1268" y="535" zoom="true"/>
-        <Node id="views/advertiser/create_ad.xhtml" x="939" y="535" zoom="true"/>
-        <Node id="views/moderator/moderator_index.xhtml" x="531" y="394" zoom="true"/>
-        <Node id="views/user/room.xhtml" x="376" y="517" zoom="true"/>
-        <Node id="views/advertiser/activate_ad.xhtml" x="1239" y="434" zoom="true"/>
-        <Node id="errors/404.xhtml" x="75" y="10" zoom="true"/>
-        <Node id="templates/template.xhtml" x="55" y="94" zoom="true"/>
-        <Node id="views/advertiser/edit_ad.xhtml" x="782" y="482" zoom="true"/>
+        <Node id="views/user/create_room.xhtml" x="701" y="589" zoom="true"/>
+        <Node id="errors/exception.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="views/user/user_index.xhtml" x="18" y="427" zoom="true"/>
+        <Node id="views/register.xhtml" x="1222" y="153" zoom="true"/>
+        <Node id="views/login.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="views/advertiser/advertiser_index.xhtml" x="458" y="33" zoom="true"/>
+        <Node id="views/advertiser/pay_ad.xhtml" x="1069" y="387" zoom="true"/>
+        <Node id="views/advertiser/create_ad.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="views/user/room.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="views/moderator/moderator_index.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="views/advertiser/activate_ad.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="errors/404.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="views/advertiser/edit_ad.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="templates/template.xhtml" x="937" y="457" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>

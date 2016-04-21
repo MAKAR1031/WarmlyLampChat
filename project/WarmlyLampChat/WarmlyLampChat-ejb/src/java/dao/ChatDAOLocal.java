@@ -4,6 +4,7 @@ import java.util.List;
 import javax.ejb.Local;
 import models.chat.ChatUser;
 import models.chat.Room;
+import models.chat.UserRole;
 
 @Local
 public interface ChatDAOLocal {
@@ -14,6 +15,10 @@ public interface ChatDAOLocal {
     void removeRoom(Room room);
     List<ChatUser> getAllUsers();
     ChatUser getUserById(Integer id);
+    ChatUser getUserByNickName(String nick);
+    void createUser(ChatUser user);
     void mergeUser(ChatUser user);
     void removeUser(ChatUser user);
+    UserRole getRoleByName(String roleName);
+    List<UserRole> getAllRoles();
 }

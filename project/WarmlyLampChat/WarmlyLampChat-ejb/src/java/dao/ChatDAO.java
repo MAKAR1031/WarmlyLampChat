@@ -3,17 +3,19 @@ package dao;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import models.chat.ChatUser;
 import models.chat.Room;
+import models.chat.UserRole;
 
 @Stateless
 public class ChatDAO implements ChatDAOLocal {
 
     @PersistenceContext(unitName = "WarmlyLampChat-ejbPUChat")
     private EntityManager em;
-    
+
     @Override
     public List<Room> getAllRooms() {
         Query query = em.createQuery("SELECT r FROM Room r", Room.class);
@@ -52,6 +54,22 @@ public class ChatDAO implements ChatDAOLocal {
     }
 
     @Override
+    public ChatUser getUserByNickName(String nick) {
+        try {
+            Query query = em.createQuery("SELECT u FROM ChatUser u WHERE u.nickName=?1", ChatUser.class);
+            query.setParameter(1, nick);
+            return (ChatUser) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void createUser(ChatUser user) {
+        em.persist(user);
+    }
+    
+    @Override
     public void mergeUser(ChatUser user) {
         em.merge(user);
     }
@@ -61,7 +79,16 @@ public class ChatDAO implements ChatDAOLocal {
         em.remove(em.merge(user));
     }
 
-    public void persist(Object object) {
-        em.persist(object);
+    @Override
+    public UserRole getRoleByName(String roleName) {
+        Query query = em.createQuery("SELECT r FROM UserRole r WHERE r.name=?1", UserRole.class);
+        query.setParameter(1, roleName);
+        return (UserRole) query.getSingleResult();
+    }
+
+    @Override
+    public List<UserRole> getAllRoles() {
+        Query query = em.createQuery("SELECT r FROM UserRole r", UserRole.class);
+        return query.getResultList();
     }
 }
