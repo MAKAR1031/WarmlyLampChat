@@ -17,6 +17,7 @@ public class ChatService implements ChatServiceLocal {
     @Override
     public Room enterToRoom(int idRoom, int idUser) {
         Room room = chatDAO.getRoomById(idRoom);
+        room.setMessages(chatDAO.getMessagesByRoom(room));
         ChatUser user = chatDAO.getUserById(idUser);
         if (!room.getUsers().contains(user)) {
             room.getUsers().add(user);
@@ -33,8 +34,8 @@ public class ChatService implements ChatServiceLocal {
 
     @Override
     public void sendMessage(Room room, Message message) {
-        room.getMessages().add(message);
-        chatDAO.mergeRoom(room);
+        message.setRoom(room);
+        chatDAO.addMesage(message);
     }
 
     @Override
@@ -50,6 +51,13 @@ public class ChatService implements ChatServiceLocal {
     @Override
     public ChatUser getUserById(int id) {
         return chatDAO.getUserById(id);
+    }
+
+    @Override
+    public Room getRoomById(int id) {
+        Room room = chatDAO.getRoomById(id);
+        room.setMessages(chatDAO.getMessagesByRoom(room));
+        return room;
     }
     
     

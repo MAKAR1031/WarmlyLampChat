@@ -31,6 +31,9 @@ public class Message implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date sendDate;
+    
+    @ManyToOne
+    private Room room;
 
     public Integer getId() {
         return id;
@@ -62,6 +65,14 @@ public class Message implements Serializable {
 
     public void setSendDate(Date sendDate) {
         this.sendDate = sendDate;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     @Override

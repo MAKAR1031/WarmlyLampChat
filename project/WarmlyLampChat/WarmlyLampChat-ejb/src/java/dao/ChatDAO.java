@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import models.chat.ChatUser;
+import models.chat.Message;
 import models.chat.Room;
 import models.chat.UserRole;
 
@@ -91,4 +92,18 @@ public class ChatDAO implements ChatDAOLocal {
         Query query = em.createQuery("SELECT r FROM UserRole r", UserRole.class);
         return query.getResultList();
     }
+
+    @Override
+    public void addMesage(Message message) {
+        em.persist(message);
+    }
+
+    @Override
+    public List<Message> getMessagesByRoom(Room room) {
+        Query query = em.createQuery("SELECT m FROM Message m WHERE m.room=?1", Message.class);
+        query.setParameter(1, room);
+        return query.getResultList();
+    }
+    
+    
 }

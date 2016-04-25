@@ -14,4 +14,5 @@ public interface ChatServiceLocal {
     void leaveRoom(int idRoom, int idUser);
     void sendMessage(Room room, Message message);
     ChatUser getUserById(int id);
+    Room getRoomById(int id);
 }

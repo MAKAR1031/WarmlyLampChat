@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 import javax.ejb.Local;
 import models.chat.ChatUser;
+import models.chat.Message;
 import models.chat.Room;
 import models.chat.UserRole;
 
@@ -21,4 +22,6 @@ public interface ChatDAOLocal {
     void removeUser(ChatUser user);
     UserRole getRoleByName(String roleName);
     List<UserRole> getAllRoles();
+    void addMesage(Message message);
+    List<Message> getMessagesByRoom(Room room);
 }

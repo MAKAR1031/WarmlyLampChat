@@ -85,6 +85,7 @@ public class UserController implements Serializable {
         message.setSendDate(new Date());
         message.setSender(currentUser);
         chatService.sendMessage(currentRoom, message);
+        currentRoom = chatService.getRoomById(currentRoom.getId());
         messageText = "";
     }
 }
