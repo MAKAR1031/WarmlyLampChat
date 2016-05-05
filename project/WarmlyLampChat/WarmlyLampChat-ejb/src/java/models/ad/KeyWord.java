@@ -1,21 +1,25 @@
-package models.chat;
+package models.ad;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "moods")
-public class Mood implements Serializable {
-
+@Table(name = "key_words")
+public class KeyWord implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private double emotionalFactor;
+    @NotNull
+    @Column(unique = true, nullable = false, name = "KEY_VALUE")
+    private String value;
+    @Column(nullable = false)
+    private double emotionFactorIncrease;
 
     public int getId() {
         return id;
@@ -25,28 +29,26 @@ public class Mood implements Serializable {
         this.id = id;
     }
 
-    public double getEmotionalFactor() {
-        return emotionalFactor;
+    public String getValue() {
+        return value;
     }
 
-    public void setEmotionalFactor(double emotionalFactor) {
-        this.emotionalFactor = emotionalFactor;
+    public void setValue(String value) {
+        this.value = value;
     }
 
-    public void addEmotionalFactor(double value) {
-        this.emotionalFactor += value;
-        if (emotionalFactor > 100d) {
-            emotionalFactor = 100d;
-        }
-        if (emotionalFactor < -100d) {
-            emotionalFactor = -100d;
-        }
+    public double getEmotionFactorIncrease() {
+        return emotionFactorIncrease;
     }
-    
+
+    public void setEmotionFactorIncrease(double emotionFactorIncrease) {
+        this.emotionFactorIncrease = emotionFactorIncrease;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + this.id;
+        int hash = 3;
+        hash = 43 * hash + this.id;
         return hash;
     }
 
@@ -61,8 +63,7 @@ public class Mood implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Mood other = (Mood) obj;
+        final KeyWord other = (KeyWord) obj;
         return this.id == other.id;
     }
-
 }

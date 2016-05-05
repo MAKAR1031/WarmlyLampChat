@@ -1,14 +1,11 @@
 package controllers;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import models.chat.ChatUser;
-import models.chat.Message;
 import models.chat.Room;
 import services.AuthServiceLocal;
 import services.ChatServiceLocal;
@@ -23,18 +20,13 @@ public class UserController implements Serializable {
     @EJB
     private ChatServiceLocal chatService;
     
-    private ChatUser currentUser;
     private Room currentRoom;
     private Room room;
     private String messageText;
     
-    @PostConstruct
-    private void onCreate() {
-        currentUser = authService.getCurrentUser();
-    }
 
     public ChatUser getCurrentUser() {
-        return currentUser;
+        return authService.getCurrentUser();
     }
     
     public Room getCurrentRoom() {
@@ -69,22 +61,19 @@ public class UserController implements Serializable {
     }
 
     public String enterToRoom(int idRoom) {
-        currentRoom = chatService.enterToRoom(idRoom, currentUser.getId());
+        chatService.enterToRoom(idRoom, authService.getCurrentUser().getId());
+        currentRoom = chatService.getRoomById(idRoom);
         return "room";
     }
 
     public String leaveRoom() {
-        chatService.leaveRoom(currentRoom.getId(), currentUser.getId());
+        chatService.leaveRoom(currentRoom.getId(), authService.getCurrentUser().getId());
         currentRoom = null;
         return "index";
     }
     
     public void sendMessage() {
-        Message message = new Message();
-        message.setContent(messageText);
-        message.setSendDate(new Date());
-        message.setSender(currentUser);
-        chatService.sendMessage(currentRoom, message);
+        chatService.sendMessage(currentRoom, authService.getCurrentUser().getId(), messageText);
         currentRoom = chatService.getRoomById(currentRoom.getId());
         messageText = "";
     }

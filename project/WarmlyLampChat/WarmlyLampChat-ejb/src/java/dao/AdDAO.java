@@ -1,12 +1,13 @@
 package dao;
 
-import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import models.ad.AdBlock;
+import models.ad.KeyWord;
 import models.ad.Status;
 
 @Stateless
@@ -15,18 +16,17 @@ public class AdDAO implements AdDAOLocal {
     @PersistenceContext(unitName = "WarmlyLampChat-ejbPUAd")
     private EntityManager em;
 
+    private final Random rand;
+
+    public AdDAO() {
+        rand = new Random();
+    }
+
     @Override
     public List<AdBlock> getAdBlocksByAdvertiser(int idAdvertiser) {
         Query query = em.createQuery("SELECT ad FROM AdBlock ad WHERE ad.advertiserId=?1", AdBlock.class);
         query.setParameter(1, idAdvertiser);
-        List<AdBlock> adBlocks = query.getResultList();
-        Status status = getStatusByName("Создан");
-        adBlocks.stream().forEach(ad -> {
-            if (ad.getActivationDate() != null && Duration.ofMillis(System.currentTimeMillis() - ad.getActivationDate().getTime()).toDays() > ad.getDaysOfActive()) {
-                ad.setStatus(status);
-            }
-         });    
-        return adBlocks;
+        return query.getResultList();
     }
 
     @Override
@@ -37,7 +37,22 @@ public class AdDAO implements AdDAOLocal {
     }
 
     @Override
-    public AdBlock getAdBlockById(int id) {
+    public AdBlock getAdBlockByEmotionFactor(double factor) {
+        Query query = em.createQuery("SELECT ad FROM AdBlock ad WHERE ?1 BETWEEN ad.minEmotionalFactor AND ad.maxEmotionalFactor AND ad.status.name='Активирован'", AdBlock.class);
+        query.setParameter(1, factor);
+        List<AdBlock> adBlocks = query.getResultList();
+        if (adBlocks.size() > 1) {
+            return adBlocks.get(rand.nextInt(adBlocks.size()));
+        } else if (adBlocks.size() == 1) {
+            return adBlocks.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public AdBlock getAdBlockById(int id
+    ) {
         return em.find(AdBlock.class, id);
     }
 
@@ -61,5 +76,11 @@ public class AdDAO implements AdDAOLocal {
         Query query = em.createQuery("SELECT s FROM Status s WHERE s.name=?1", Status.class);
         query.setParameter(1, name);
         return (Status) query.getSingleResult();
+    }
+
+    @Override
+    public List<KeyWord> getAllKeyWords() {
+        Query query = em.createQuery("SELECT k FROM KeyWord k", KeyWord.class);
+        return query.getResultList();
     }
 }

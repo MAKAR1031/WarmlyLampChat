@@ -10,15 +10,18 @@
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <!--<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/insert_data_to_chat_db.sql"/>-->
     </properties>
   </persistence-unit>
   <persistence-unit name="WarmlyLampChat-ejbPUAd" transaction-type="JTA">
     <jta-data-source>jdbc/warmly_lamp_chat_ad_db</jta-data-source>
     <class>models.ad.AdBlock</class>
     <class>models.ad.Status</class>
+    <class>models.ad.KeyWord</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <!--<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/insert_data_to_ad_db.sql"/>-->
     </properties>
   </persistence-unit>
 </persistence>

@@ -33,6 +33,7 @@
             <h:commandButton action="#{userController.sendMessage()}" value="Отправить"/><br/>
             <h:commandButton action="#{userController.leaveRoom()}" value="Выйти из комнаты"/>
         </h:form>
+        <h:outputText value="#{userController.currentRoom.currentAdBlock.title}"/>
     </ui:define>
 
 </ui:composition>

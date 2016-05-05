@@ -1,14 +1,11 @@
 package controllers;
 
-import dao.ChatDAOLocal;
 import java.io.Serializable;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import models.ad.AdBlock;
-import models.chat.ChatUser;
 import services.AdvertiserServiceLocal;
 import services.AuthServiceLocal;
 
@@ -18,35 +15,26 @@ public class AdvertiserController implements Serializable{
 
     @EJB
     private AuthServiceLocal authService;
-
-    @EJB
-    private ChatDAOLocal dao;
     
     @EJB
     private AdvertiserServiceLocal advertiserService;
-    private ChatUser currentUser;
     private AdBlock adBlock;
-    
-    @PostConstruct
-    private void onCreate() {
-        currentUser = authService.getCurrentUser();
-    }
 
     public AdBlock getAdBlock() {
         return adBlock;
     }
 
     public List<AdBlock> getAdBlocks() {
-        return advertiserService.getAdBlocksByAdvertiser(currentUser);
+        return advertiserService.getAdBlocksByAdvertiser(authService.getCurrentUser());
     }
-
+    
     public String createAdBlock() {
         this.adBlock = new AdBlock();
         return "create_ad";
     }
     
     public String createAdBlockConfirm() {
-        advertiserService.createAdBlock(adBlock, currentUser.getId());
+        advertiserService.createAdBlock(adBlock, authService.getCurrentUser().getId());
         return "index";
     }
     

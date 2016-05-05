@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import models.ad.AdBlock;
 
 @Entity
 @Table(name = "rooms")
@@ -27,11 +28,14 @@ public class Room implements Serializable {
     @OneToMany
     private List<ChatUser> users;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Mood currentMood;
+
     @Transient
     private List<Message> messages;
-
-    @ManyToOne
-    private Mood currentMood;
+    
+    @Transient
+    private AdBlock currentAdBlock;
 
     public int getId() {
         return id;
@@ -57,6 +61,14 @@ public class Room implements Serializable {
         this.users = users;
     }
 
+    public Mood getCurrentMood() {
+        return currentMood;
+    }
+
+    public void setCurrentMood(Mood currentMood) {
+        this.currentMood = currentMood;
+    }
+
     public List<Message> getMessages() {
         return messages;
     }
@@ -65,12 +77,12 @@ public class Room implements Serializable {
         this.messages = messages;
     }
 
-    public Mood getCurrentMood() {
-        return currentMood;
+    public AdBlock getCurrentAdBlock() {
+        return currentAdBlock;
     }
 
-    public void setCurrentMood(Mood currentMood) {
-        this.currentMood = currentMood;
+    public void setCurrentAdBlock(AdBlock currentAdBlock) {
+        this.currentAdBlock = currentAdBlock;
     }
 
     @Override

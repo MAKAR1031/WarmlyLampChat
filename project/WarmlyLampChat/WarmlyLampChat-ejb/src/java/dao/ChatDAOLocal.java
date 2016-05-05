@@ -14,14 +14,17 @@ public interface ChatDAOLocal {
     void createRoom(Room room);
     void mergeRoom(Room room);
     void removeRoom(Room room);
+    
     List<ChatUser> getAllUsers();
     ChatUser getUserById(Integer id);
     ChatUser getUserByNickName(String nick);
     void createUser(ChatUser user);
     void mergeUser(ChatUser user);
     void removeUser(ChatUser user);
+    
     UserRole getRoleByName(String roleName);
     List<UserRole> getAllRoles();
+    
     void addMesage(Message message);
     List<Message> getMessagesByRoom(Room room);
 }

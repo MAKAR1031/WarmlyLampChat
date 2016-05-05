@@ -3,7 +3,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../../templates/template.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html">
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
         Редактирование рекламного блока
@@ -13,10 +14,26 @@
         <h:form>
             <h1><h:outputText value="Редактирование блока рекламы"/></h1>
             <h:panelGrid columns="2">
-                <h:outputLabel value="Title:" for="title" />
-                <h:inputText id="title" value="#{advertiserController.adBlock.title}" title="Title" />
-                <h:outputLabel value="Content:" for="content" />
-                <h:inputText id="content" value="#{advertiserController.adBlock.content}" title="Content" />
+                <h:outputLabel value="Заголовок" for="title" />
+                <h:inputText id="title" value="#{advertiserController.adBlock.title}" title="Заголовок" />
+                <h:outputLabel value="Содержимое" for="content" />
+                <h:inputText id="content" value="#{advertiserController.adBlock.content}" title="Содержимое" />
+                <h:outputLabel value="Минимальное настроение" for="mood_min"/>
+                <h:selectOneMenu id="mood_min" value="#{advertiserController.adBlock.minEmotionalFactor}">
+                    <f:selectItem itemValue="-50" itemLabel="Печальное"/>
+                    <f:selectItem itemValue="-25" itemLabel="Грустное"/>
+                    <f:selectItem itemValue="0" itemLabel="Нейтральное"/>
+                    <f:selectItem itemValue="25" itemLabel="Веселое"/>
+                    <f:selectItem itemValue="50" itemLabel="Радостное"/>
+                </h:selectOneMenu>
+                <h:outputLabel value="Максимальное настроение" for="mood_max"/>
+                <h:selectOneMenu id="mood_max" value="#{advertiserController.adBlock.maxEmotionalFactor}">
+                    <f:selectItem itemValue="-50" itemLabel="Печальное"/>
+                    <f:selectItem itemValue="-25" itemLabel="Грустное"/>
+                    <f:selectItem itemValue="0" itemLabel="Нейтральное"/>
+                    <f:selectItem itemValue="25" itemLabel="Веселое"/>
+                    <f:selectItem itemValue="50" itemLabel="Радостное"/>
+                </h:selectOneMenu>
             </h:panelGrid>
             <h:commandButton action="#{advertiserController.editAdBlockConfirm()}" value="Сохранить"/>
         </h:form>

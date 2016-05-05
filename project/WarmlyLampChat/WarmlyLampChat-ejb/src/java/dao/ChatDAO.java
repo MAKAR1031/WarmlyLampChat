@@ -104,6 +104,4 @@ public class ChatDAO implements ChatDAOLocal {
         query.setParameter(1, room);
         return query.getResultList();
     }
-    
-    
 }

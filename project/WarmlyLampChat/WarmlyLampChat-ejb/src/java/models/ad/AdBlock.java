@@ -15,7 +15,6 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import models.chat.ChatUser;
-import models.chat.Mood;
 
 @Entity
 @Table(name = "adblocks")
@@ -40,14 +39,14 @@ public class AdBlock implements Serializable {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Status status;
-
-    private int targetMoodId;
     
+    private double minEmotionalFactor;
+    
+    private double maxEmotionalFactor;
+
     @NotNull
     private int advertiserId;
 
-    @Transient
-    private Mood targetMood;
     @Transient
     private ChatUser advertiser;
 
@@ -99,22 +98,6 @@ public class AdBlock implements Serializable {
         this.status = status;
     }
 
-    public int getTargetMoodId() {
-        return targetMoodId;
-    }
-
-    public void setTargetMoodId(int targetMoodId) {
-        this.targetMoodId = targetMoodId;
-    }
-
-    public Mood getTargetMood() {
-        return targetMood;
-    }
-
-    public void setTargetMood(Mood targetMood) {
-        this.targetMood = targetMood;
-    }
-
     public int getAdvertiserId() {
         return advertiserId;
     }
@@ -130,6 +113,22 @@ public class AdBlock implements Serializable {
     public void setAdvertiser(ChatUser advertiser) {
         this.advertiser = advertiser;
     }
+
+    public double getMinEmotionalFactor() {
+        return minEmotionalFactor;
+    }
+
+    public void setMinEmotionalFactor(double minEmotionalFactor) {
+        this.minEmotionalFactor = minEmotionalFactor;
+    }
+
+    public double getMaxEmotionalFactor() {
+        return maxEmotionalFactor;
+    }
+
+    public void setMaxEmotionalFactor(double maxEmotionalFactor) {
+        this.maxEmotionalFactor = maxEmotionalFactor;
+    }
     
     @Override
     public int hashCode() {
@@ -137,7 +136,7 @@ public class AdBlock implements Serializable {
         hash = 17 * hash + this.id;
         return hash;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -152,5 +151,4 @@ public class AdBlock implements Serializable {
         final AdBlock other = (AdBlock) obj;
         return this.id == other.id;
     }
-
 }
