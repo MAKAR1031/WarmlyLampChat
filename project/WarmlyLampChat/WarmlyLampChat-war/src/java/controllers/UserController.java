@@ -16,19 +16,18 @@ public class UserController implements Serializable {
 
     @EJB
     private AuthServiceLocal authService;
-    
+
     @EJB
     private ChatServiceLocal chatService;
-    
+
     private Room currentRoom;
     private Room room;
     private String messageText;
-    
 
     public ChatUser getCurrentUser() {
         return authService.getCurrentUser();
     }
-    
+
     public Room getCurrentRoom() {
         return currentRoom;
     }
@@ -48,7 +47,13 @@ public class UserController implements Serializable {
     public List<Room> getAllRooms() {
         return chatService.getAllRooms();
     }
-    
+
+    public void updateRoom() {
+        if (currentRoom != null) {
+            currentRoom = chatService.getRoomById(currentRoom.getId());
+        }
+    }
+
     public String createRoom() {
         this.room = new Room();
         return "create_room";
@@ -71,7 +76,7 @@ public class UserController implements Serializable {
         currentRoom = null;
         return "index";
     }
-    
+
     public void sendMessage() {
         chatService.sendMessage(currentRoom, authService.getCurrentUser().getId(), messageText);
         currentRoom = chatService.getRoomById(currentRoom.getId());

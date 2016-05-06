@@ -4,7 +4,8 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./../../templates/template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">
         Главная страница пользователя
@@ -12,23 +13,19 @@
 
     <ui:define name="content">
         <h:form>
-            <h1><h:outputText value="Список комнат"/></h1>
-            <h:dataTable value="#{userController.allRooms}" var="item">
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Название"/>
-                    </f:facet>
-                    <h:outputText value="#{item.name}"/>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Вход"/>
-                    </f:facet>
-                    <h:commandButton action="#{userController.enterToRoom(item.id)}" value="Войти"/>
-                </h:column>
-            </h:dataTable>
-            <h:commandButton action="#{userController.createRoom()}" value="Создать комнату"/>
+            <div class="panel">
+                <div class="element">
+                    <h:commandLink action="#{userController.createRoom()}" value="Создать комнату +"/>
+                </div>
+                <c:forEach items="#{userController.allRooms}" var="room">
+                    <div class="element"><h:commandLink action="#{userController.enterToRoom(room.id)}" value="#{room.name}"/></div>
+                </c:forEach>
+            </div>
+            <h:panelGrid>
+                <h:outputText value="Для того, чтобы начать разговр наведи курсор на правую часть окна. 
+                          Там ты сможешь создать новую комнату, либо зайти в уже существующую -->"/>
             <h:commandButton action="#{authController.logout()}" value="Выйти из учетной записи"/>
+            </h:panelGrid>
         </h:form>
     </ui:define>
 </ui:composition>

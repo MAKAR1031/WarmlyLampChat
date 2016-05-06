@@ -18,8 +18,8 @@
                 <h:outputLabel for="password" value="Пароль"/>
                 <h:inputSecret value="#{authController.loginData.password}" id="password"/>
                 <h:commandButton action="#{authController.login()}" value="Войти"/>
+                <h:button outcome="register" value="Зарегистрироваться"/>
             </h:panelGrid>
         </h:form>
-        <h:button outcome="register" value="Зарегистрироваться"/>
     </ui:define>
 </ui:composition>

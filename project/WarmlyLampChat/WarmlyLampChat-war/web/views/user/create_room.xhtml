@@ -12,11 +12,11 @@
     <ui:define name="content">
         <h:form>
             <h1><h:outputText value="Создание комнаты"/></h1>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 <h:outputLabel value="Название" for="name" />
                 <h:inputText id="name" value="#{userController.room.name}"/>
+                <h:commandButton action="#{userController.createRoomConfirm()}" value="Создать"/>
             </h:panelGrid>
-            <h:commandButton action="#{userController.createRoomConfirm()}" value="Создать"/>
         </h:form>
         <h:button outcome="index" value="На главную"/>
     </ui:define>

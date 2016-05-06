@@ -13,25 +13,34 @@
 
     <ui:define name="content">
         <h1><h:outputText value="Сообщения комнаты: #{userController.currentRoom.name}"/></h1>
-        <c:forEach items="#{userController.currentRoom.messages}" var="message">
-            <div class="message">
-                <div class="sender">
-                    <h:outputText value="#{message.sender.nickName}"/>
-                </div>
-                <div class="content">
-                    <h:outputText value="#{message.content}"/>
-                </div>
-                <div class="date">
-                    <h:outputText value="#{message.sendDate}">
-                        <f:convertDateTime pattern="dd.MM.yyyy"/>
-                    </h:outputText>
-                </div>
+        <h:panelGroup id="messages">
+            <div class="messages">
+                <c:forEach items="#{userController.currentRoom.messages}" var="message">
+                    <div class="message">
+                        <div class="sender">
+                            <h:outputText value="#{message.sender.nickName}"/>
+                        </div>
+                        <div class="content">
+                            <h:outputText value="#{message.content}"/>
+                        </div>
+                        <div class="date">
+                            <h:outputText value="#{message.sendDate}">
+                                <f:convertDateTime pattern="dd.MM.yyyy"/>
+                            </h:outputText>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
-        </c:forEach>
+        </h:panelGroup>
         <h:form>
             <h:inputTextarea value="#{userController.messageText}" class="input_message"/>
-            <h:commandButton action="#{userController.sendMessage()}" value="Отправить"/><br/>
-            <h:commandButton action="#{userController.leaveRoom()}" value="Выйти из комнаты"/>
+            <h:panelGrid columns="3">
+                <h:commandButton action="#{userController.sendMessage()}" value="Отправить"/>
+                <h:commandButton action="#{userController.updateRoom()}" value="Обновить">
+                    <f:ajax execute="@form" render="messages"/>
+                </h:commandButton>
+                <h:commandButton action="#{userController.leaveRoom()}" value="Выйти из комнаты"/>
+            </h:panelGrid>
         </h:form>
         <h:outputText value="#{userController.currentRoom.currentAdBlock.title}"/>
     </ui:define>
