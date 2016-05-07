@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import models.ad.AdBlock;
+import models.ad.KeyWord;
 import models.ad.Status;
 import services.ModeratorServiceLocal;
 
@@ -31,5 +32,30 @@ public class ModeratorService implements ModeratorServiceLocal {
     @Override
     public List<AdBlock> getConsiderationAdBlocks() {
         return adDAO.getAdBlocksByStatus("На рассмотрении");
+    }
+
+    @Override
+    public KeyWord getKeyWordById(int id) {
+        return adDAO.getKeyWordById(id);
+    }
+
+    @Override
+    public List<KeyWord> getAllKeyWords() {
+        return adDAO.getAllKeyWords();
+    }
+
+    @Override
+    public void addKeyWord(KeyWord keyWord) {
+        adDAO.addKeyWord(keyWord);
+    }
+
+    @Override
+    public void updateKeyWord(KeyWord keyWord) {
+        adDAO.mergeKeyWord(keyWord);
+    }
+
+    @Override
+    public void removeKeyWord(KeyWord keyWord) {
+        adDAO.removeKeyWord(keyWord);
     }
 }

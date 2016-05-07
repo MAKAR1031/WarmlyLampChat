@@ -79,8 +79,28 @@ public class AdDAO implements AdDAOLocal {
     }
 
     @Override
+    public KeyWord getKeyWordById(int id) {
+        return em.find(KeyWord.class, id);
+    }
+
+    @Override
     public List<KeyWord> getAllKeyWords() {
         Query query = em.createQuery("SELECT k FROM KeyWord k", KeyWord.class);
         return query.getResultList();
+    }
+
+    @Override
+    public void addKeyWord(KeyWord keyWord) {
+        em.persist(keyWord);
+    }
+
+    @Override
+    public void mergeKeyWord(KeyWord keyWord) {
+        em.merge(keyWord);
+    }
+
+    @Override
+    public void removeKeyWord(KeyWord keyWord) {
+        em.remove(em.merge(keyWord));
     }
 }

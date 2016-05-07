@@ -18,5 +18,9 @@ public interface AdDAOLocal {
     
     Status getStatusByName(String name);
     
+    KeyWord getKeyWordById(int id);
     List<KeyWord> getAllKeyWords();
+    void addKeyWord(KeyWord keyWord);
+    void mergeKeyWord(KeyWord keyWord);
+    void removeKeyWord(KeyWord keyWord);
 }

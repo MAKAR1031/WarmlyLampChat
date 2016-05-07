@@ -8,22 +8,18 @@
         <navigation-case>
             <from-outcome>register</from-outcome>
             <to-view-id>/views/register.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>user_login</from-outcome>
             <to-view-id>/views/user/user_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>moderator_login</from-outcome>
             <to-view-id>/views/moderator/moderator_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>advertiser_login</from-outcome>
             <to-view-id>/views/advertiser/advertiser_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>login</from-outcome>
@@ -39,12 +35,10 @@
         <navigation-case>
             <from-outcome>login</from-outcome>
             <to-view-id>/views/login.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>register</from-outcome>
             <to-view-id>/views/register.xhtml</to-view-id>
-            <redirect/>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -52,17 +46,14 @@
         <navigation-case>
             <from-outcome>create_room</from-outcome>
             <to-view-id>/views/user/create_room.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>room</from-outcome>
             <to-view-id>/views/user/room.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>logout</from-outcome>
             <to-view-id>/views/login.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -70,7 +61,6 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/views/user/user_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -78,7 +68,6 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/views/user/user_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -86,7 +75,10 @@
         <navigation-case>
             <from-outcome>logout</from-outcome>
             <to-view-id>/views/login.xhtml</to-view-id>
-            <redirect/>        
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>keywords_list</from-outcome>
+            <to-view-id>/views/moderator/keywords_list.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -94,27 +86,22 @@
         <navigation-case>
             <from-outcome>logout</from-outcome>
             <to-view-id>/views/login.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>edit_ad</from-outcome>
             <to-view-id>/views/advertiser/edit_ad.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>create_ad</from-outcome>
             <to-view-id>/views/advertiser/create_ad.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>pay_ad</from-outcome>
             <to-view-id>/views/advertiser/pay_ad.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
         <navigation-case>
             <from-outcome>activate_ad</from-outcome>
             <to-view-id>/views/advertiser/activate_ad.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -122,7 +109,6 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/views/advertiser/advertiser_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -130,7 +116,6 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/views/advertiser/advertiser_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -138,7 +123,6 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/views/advertiser/advertiser_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -146,7 +130,6 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/views/advertiser/advertiser_index.xhtml</to-view-id>
-            <redirect/>        
         </navigation-case>
     </navigation-rule>
     <navigation-rule>
@@ -187,6 +170,13 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/views/admin/admin_index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/views/moderator/keywords_list.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/views/moderator/moderator_index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>
