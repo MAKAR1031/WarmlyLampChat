@@ -63,6 +63,8 @@ public class AuthController {
                     return "advertiser_login";
                 case "Пользователь":
                     return "user_login";
+                case "Администратор":
+                    return "admin_index";
                 default:
                     return "login";
             }
@@ -85,11 +87,13 @@ public class AuthController {
 
     public String register() {
         try {
-            authService.registerUser(registerData.getFio(), registerData.getNickName(), registerData.getPassword(), registerData.getRoleName());
+            authService.registerUser(registerData.getFio(), 
+                    registerData.getNickName(), 
+                    registerData.getPassword(), 
+                    registerData.getRoleName());
             return "login";
         } catch (Exception e) {
             return "register";
         }
     }
-
 }

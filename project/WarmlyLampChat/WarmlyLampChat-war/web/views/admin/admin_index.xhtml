@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../../templates/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Главная страница администратора
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <h1><h:outputText value="Список пользователей"/></h1>
+            <h:dataTable value="#{adminController.allUsers}" var="item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ник"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nickName}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ФИО"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fio}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Роль"/>
+                    </f:facet>
+                    <h:outputText value="#{item.role.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Редактирование"/>
+                    </f:facet>
+                    <h:commandButton action="#{adminController.updateUser(item.id)}" value="Редактировать"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Удаление"/>
+                    </f:facet>
+                    <h:commandButton action="#{adminController.removeUser(item.id)}" value="Удалить"/>
+                </h:column>
+                <f:facet name="footer">
+                    <h:commandButton action="#{adminController.addUser()}" value="Добавить пользователя"/>
+                </f:facet>
+            </h:dataTable>
+            <h:commandButton action="#{authController.logout()}" value="Выйти из учетной записи"/>
+        </h:form>
+    </ui:define>
+</ui:composition>

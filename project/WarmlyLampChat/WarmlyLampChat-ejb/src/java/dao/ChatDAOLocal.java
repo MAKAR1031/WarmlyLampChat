@@ -11,14 +11,14 @@ import models.chat.UserRole;
 public interface ChatDAOLocal {
     List<Room> getAllRooms();
     Room getRoomById(Integer id);
-    void createRoom(Room room);
+    void addRoom(Room room);
     void mergeRoom(Room room);
     void removeRoom(Room room);
     
     List<ChatUser> getAllUsers();
     ChatUser getUserById(Integer id);
     ChatUser getUserByNickName(String nick);
-    void createUser(ChatUser user);
+    void addUser(ChatUser user);
     void mergeUser(ChatUser user);
     void removeUser(ChatUser user);
     

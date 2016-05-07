@@ -29,7 +29,7 @@ public class ChatDAO implements ChatDAOLocal {
     }
 
     @Override
-    public void createRoom(Room room) {
+    public void addRoom(Room room) {
         em.persist(room);
     }
 
@@ -66,7 +66,7 @@ public class ChatDAO implements ChatDAOLocal {
     }
 
     @Override
-    public void createUser(ChatUser user) {
+    public void addUser(ChatUser user) {
         em.persist(user);
     }
     

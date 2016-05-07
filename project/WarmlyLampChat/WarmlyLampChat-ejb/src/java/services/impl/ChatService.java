@@ -60,7 +60,7 @@ public class ChatService implements ChatServiceLocal {
         Mood mood = new Mood();
         mood.setEmotionalFactor(0);
         room.setCurrentMood(mood);
-        chatDAO.createRoom(room);
+        chatDAO.addRoom(room);
     }
 
     @Override

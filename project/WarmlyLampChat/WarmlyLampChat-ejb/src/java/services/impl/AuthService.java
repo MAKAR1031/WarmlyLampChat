@@ -37,6 +37,6 @@ public class AuthService implements AuthServiceLocal {
         user.setNickName(nickName);
         user.setPassword(password);
         user.setRole(role);
-        chatDAO.createUser(user);
+        chatDAO.addUser(user);
     }
 }

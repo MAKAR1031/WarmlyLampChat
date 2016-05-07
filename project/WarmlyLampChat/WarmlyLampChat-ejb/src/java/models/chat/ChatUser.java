@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -28,6 +29,9 @@ public class ChatUser implements Serializable {
     
     @NotNull
     private String password;
+    
+    @Transient
+    private String tempPassword;
     
     @NotNull
     @Size(min = 20, max = 70)
@@ -51,9 +55,14 @@ public class ChatUser implements Serializable {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
+    
+    public String getPassword() {
+        return tempPassword;
+    }
 
     public void setPassword(String password) {
         this.password = encryptPassword(password);
+        this.tempPassword = password;
     }
 
     public String getFio() {

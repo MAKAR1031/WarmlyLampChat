@@ -29,6 +29,10 @@
             <from-outcome>login</from-outcome>
             <to-view-id>/views/login.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>admin_index</from-outcome>
+            <to-view-id>/views/admin/admin_index.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/views/register.xhtml</from-view-id>
@@ -143,6 +147,46 @@
             <from-outcome>index</from-outcome>
             <to-view-id>/views/advertiser/advertiser_index.xhtml</to-view-id>
             <redirect/>        
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/views/admin/admin_index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/views/login.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>update_user</from-outcome>
+            <to-view-id>/views/admin/update_user.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>remove_user</from-outcome>
+            <to-view-id>/views/admin/remove_user.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>add_user</from-outcome>
+            <to-view-id>/views/admin/add_user.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/views/admin/remove_user.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/views/admin/admin_index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/views/admin/add_user.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/views/admin/admin_index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/views/admin/update_user.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/views/admin/admin_index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

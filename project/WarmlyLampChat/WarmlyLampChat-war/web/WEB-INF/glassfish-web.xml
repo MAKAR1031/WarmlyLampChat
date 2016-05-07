@@ -13,6 +13,10 @@
     <role-name>USER</role-name>
     <group-name>Пользователь</group-name>
   </security-role-mapping>
+  <security-role-mapping>
+    <role-name>ADMINISTRATOR</role-name>
+    <group-name>Администратор</group-name>
+  </security-role-mapping>
   <class-loader delegate="true"/>
   <jsp-config>
     <property name="keepgenerated" value="true">

@@ -69,6 +69,18 @@
             <role-name>USER</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <display-name>AdministratorConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>AdministratorResources</web-resource-name>
+            <description/>
+            <url-pattern>/views/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>ADMINISTRATOR</role-name>
+        </auth-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>BASIC</auth-method>
         <realm-name>warmlyRealm</realm-name>
@@ -84,5 +96,9 @@
     <security-role>
         <description/>
         <role-name>USER</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>ADMINISTRATOR</role-name>
     </security-role>
 </web-app>
