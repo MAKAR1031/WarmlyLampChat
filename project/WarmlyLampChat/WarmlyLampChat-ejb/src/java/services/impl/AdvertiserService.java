@@ -33,10 +33,23 @@ public class AdvertiserService implements AdvertiserServiceLocal {
     }
 
     @Override
+    public List<AdBlock> getAdBlocksByAdvertiser(ChatUser advertiser) {
+        return adDAO.getAdBlocksByAdvertiser(advertiser.getId());
+    }
+
+    @Override
     public void updateAd(AdBlock ad) {
         Status status = adDAO.getStatusByName("Создан");
         ad.setStatus(status);
         adDAO.mergeAdBlock(ad);
+    }
+
+    @Override
+    public void removeAd(AdBlock ad) {
+        if ("Создан".equals(ad.getStatus().getName()) || 
+                "Отклонен".equals(ad.getStatus().getName())) {
+            adDAO.removeAdBlock(ad);
+        }
     }
 
     @Override
@@ -52,10 +65,5 @@ public class AdvertiserService implements AdvertiserServiceLocal {
         ad.setActivationDate(new Date());
         ad.setStatus(status);
         adDAO.mergeAdBlock(ad);
-    }
-
-    @Override
-    public List<AdBlock> getAdBlocksByAdvertiser(ChatUser advertiser) {
-        return adDAO.getAdBlocksByAdvertiser(advertiser.getId());
     }
 }

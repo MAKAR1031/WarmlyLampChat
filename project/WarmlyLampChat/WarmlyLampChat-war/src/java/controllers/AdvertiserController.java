@@ -67,4 +67,8 @@ public class AdvertiserController implements Serializable{
         advertiserService.payForAd(adBlock);
         return "index";
     }
+    
+    public void removeAdBlock(AdBlock ad) {
+        advertiserService.removeAd(ad);
+    }
 }

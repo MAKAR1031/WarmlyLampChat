@@ -11,6 +11,7 @@ public interface AdvertiserServiceLocal {
     void createAdBlock(AdBlock adBlock, int idAdvertiser);
     List<AdBlock> getAdBlocksByAdvertiser(ChatUser advertiser);
     void updateAd(AdBlock ad);
+    void removeAd(AdBlock ad);
     void activateAd(AdBlock ad);
     void payForAd(AdBlock ad);
 }

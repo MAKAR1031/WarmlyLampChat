@@ -52,6 +52,8 @@
                     </f:facet>
                     <h:commandButton action="#{advertiserController.editAdBlock(item.id)}" value="Редактировать" 
                                      rendered="#{item.status.name=='Создан' || item.status.name=='Отклонен'}"/>
+                    <h:commandButton action="#{advertiserController.removeAdBlock(item)}" value="Удалить" 
+                                     rendered="#{item.status.name=='Создан' || item.status.name=='Отклонен'}"/>
                     <h:commandButton action="#{advertiserController.activateAdBlock(item.id)}" value="Активировать" 
                                      rendered="#{item.status.name=='Создан'}"/>
                     <h:commandButton action="#{advertiserController.payForAdBlock(item.id)}" value="Оплатить" 
