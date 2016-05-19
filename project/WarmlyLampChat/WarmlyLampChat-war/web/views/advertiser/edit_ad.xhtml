@@ -17,7 +17,7 @@
                 <h:outputLabel value="Заголовок" for="title" />
                 <h:inputText id="title" value="#{advertiserController.adBlock.title}" title="Заголовок" />
                 <h:outputLabel value="Содержимое" for="content" />
-                <h:inputText id="content" value="#{advertiserController.adBlock.content}" title="Содержимое" />
+                <h:inputTextarea id="content" value="#{advertiserController.adBlock.content}" title="Содержимое" />
                 <h:outputLabel value="Минимальное настроение" for="mood_min"/>
                 <h:selectOneMenu id="mood_min" value="#{advertiserController.adBlock.minEmotionalFactor}">
                     <f:selectItem itemValue="-50" itemLabel="Печальное"/>

@@ -22,13 +22,13 @@
                         <span class="enter_room">
                             <h:commandLink action="#{userController.enterToRoom(room.id)}" value="#{room.name}"/>
                         </span>
-                        <h:commandLink action="#{userController.removeRoom(room.id)}" value="X" title="Удалить комнату"/>
+                        <h:commandLink action="#{userController.removeRoom(room.id)}" value="Удалить" title="Удалить комнату"/>
                     </div>
                 </c:forEach>
             </div>
             <h:panelGrid>
                 <h:outputText value="Для того, чтобы начать разговр наведи курсор на правую часть окна. 
-                          Там ты сможешь создать новую комнату, либо зайти в уже существующую -->"/>
+                          Там ты сможешь создать новую комнату, либо зайти в уже существующую -->"/><br/>
             <h:commandButton action="#{authController.logout()}" value="Выйти из учетной записи"/>
             </h:panelGrid>
         </h:form>

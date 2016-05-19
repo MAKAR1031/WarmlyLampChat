@@ -12,9 +12,9 @@
 
     <ui:define name="content">
         <h:form>
-            <h1><h:outputText value="Create/Edit"/></h1>
+            <h1><h:outputText value="Активация рекламного блока"/></h1>
             <h:panelGrid columns="2">
-                <h:outputLabel value="DaysOfActive:" for="daysOfActive" />
+                <h:outputLabel value="Количество дней" for="daysOfActive" />
                 <h:selectOneMenu id="daysOfActive" value="#{advertiserController.adBlock.daysOfActive}" title="DaysOfActive">
                     <f:selectItem itemValue="15" />
                     <f:selectItem itemValue="30"/>
@@ -24,5 +24,6 @@
             </h:panelGrid>
             <h:commandButton action="#{advertiserController.activateAdBlockConfirm()}" value="Активировать"/>
         </h:form>
+        <h:button outcome="index" value="На главную"/>
     </ui:define>
 </ui:composition>
