@@ -27,4 +27,5 @@ public interface ChatDAOLocal {
     
     void addMesage(Message message);
     List<Message> getMessagesByRoom(Room room);
+    void removeMessage(Message message);
 }

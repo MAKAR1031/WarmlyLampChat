@@ -40,6 +40,16 @@ public class ChatService implements ChatServiceLocal {
     }
 
     @Override
+    public void removeRoom(int idRoom) {
+        Room room = chatDAO.getRoomById(idRoom);
+        chatDAO.getMessagesByRoom(room).stream().forEach(message ->{
+            message.setRoom(null);
+            chatDAO.removeMessage(message);
+        });
+        chatDAO.removeRoom(room);
+    }
+    
+    @Override
     @Interceptors(MessageInterceptor.class)
     public void sendMessage(Room room, int idSender, String messageText) {
         Message message = new Message();

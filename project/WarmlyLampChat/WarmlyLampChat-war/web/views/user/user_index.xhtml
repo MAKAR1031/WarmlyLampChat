@@ -18,7 +18,12 @@
                     <h:commandLink action="#{userController.createRoom()}" value="Создать комнату +"/>
                 </div>
                 <c:forEach items="#{userController.allRooms}" var="room">
-                    <div class="element"><h:commandLink action="#{userController.enterToRoom(room.id)}" value="#{room.name}"/></div>
+                    <div class="element">
+                        <span class="enter_room">
+                            <h:commandLink action="#{userController.enterToRoom(room.id)}" value="#{room.name}"/>
+                        </span>
+                        <h:commandLink action="#{userController.removeRoom(room.id)}" value="X" title="Удалить комнату"/>
+                    </div>
                 </c:forEach>
             </div>
             <h:panelGrid>

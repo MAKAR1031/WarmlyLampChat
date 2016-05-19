@@ -72,6 +72,11 @@ body {
     color: black;
 }
 
+.element .enter_room {
+    width: 80%;
+    display: inline-block;
+}
+
 .messages {
     width: 100%;
     border: 1px dashed gray;

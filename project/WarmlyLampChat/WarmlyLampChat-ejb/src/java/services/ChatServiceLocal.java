@@ -11,6 +11,7 @@ public interface ChatServiceLocal {
     void createRoom(Room room);
     void enterToRoom(int idRoom, int idUser);
     void leaveRoom(int idRoom, int idUser);
+    void removeRoom(int idRoom);
     void sendMessage(Room room, int idSender, String message);
     ChatUser getUserById(int id);
     Room getRoomById(int id);

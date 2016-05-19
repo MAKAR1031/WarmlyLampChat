@@ -82,4 +82,8 @@ public class UserController implements Serializable {
         currentRoom = chatService.getRoomById(currentRoom.getId());
         messageText = "";
     }
+    
+    public void removeRoom(int idRoom) {
+        chatService.removeRoom(idRoom);
+    }
 }

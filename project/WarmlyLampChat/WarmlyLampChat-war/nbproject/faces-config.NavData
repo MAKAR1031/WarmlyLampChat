@@ -5,8 +5,8 @@
         <Node id="views/admin/update_user.xhtml" x="1339" y="660" zoom="true"/>
         <Node id="views/user/create_room.xhtml" x="-92" y="608" zoom="true"/>
         <Node id="errors/exception.xhtml" x="-32" y="183" zoom="true"/>
-        <Node id="views/register.xhtml" x="937" y="315" zoom="true"/>
         <Node id="views/user/user_index.xhtml" x="63" y="512" zoom="true"/>
+        <Node id="views/register.xhtml" x="937" y="315" zoom="true"/>
         <Node id="views/login.xhtml" x="625" y="299" zoom="true"/>
         <Node id="views/advertiser/advertiser_index.xhtml" x="566" y="59" zoom="true"/>
         <Node id="views/advertiser/pay_ad.xhtml" x="692" y="-113" zoom="true"/>
@@ -16,10 +16,11 @@
         <Node id="views/user/room.xhtml" x="221" y="605" zoom="true"/>
         <Node id="views/advertiser/activate_ad.xhtml" x="274" y="-150" zoom="true"/>
         <Node id="views/admin/admin_index.xhtml" x="1145" y="578" zoom="true"/>
+        <Node id="views/moderator/keywords_list.xhtml" x="536" y="716" zoom="true"/>
         <Node id="errors/404.xhtml" x="11" y="125" zoom="true"/>
         <Node id="templates/template.xhtml" x="-17" y="230" zoom="true"/>
-        <Node id="views/advertiser/edit_ad.xhtml" x="1000" y="-18" zoom="true"/>
         <Node id="views/admin/add_user.xhtml" x="931" y="650" zoom="true"/>
+        <Node id="views/advertiser/edit_ad.xhtml" x="1000" y="-18" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
