@@ -1,7 +1,6 @@
 package services.impl;
 
-import dao.AdDAOLocal;
-import dao.ChatDAOLocal;
+import dao.AdDAO;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -15,9 +14,7 @@ import services.AdvertiserServiceLocal;
 public class AdvertiserService implements AdvertiserServiceLocal {
 
     @EJB
-    private ChatDAOLocal chatDAO;
-    @EJB
-    private AdDAOLocal adDAO;
+    private AdDAO adDAO;
 
     @Override
     public AdBlock getAdBlockById(int id) {
@@ -46,8 +43,8 @@ public class AdvertiserService implements AdvertiserServiceLocal {
 
     @Override
     public void removeAd(AdBlock ad) {
-        if ("Создан".equals(ad.getStatus().getName()) || 
-                "Отклонен".equals(ad.getStatus().getName())) {
+        if ("Создан".equals(ad.getStatus().getName())
+                || "Отклонен".equals(ad.getStatus().getName())) {
             adDAO.removeAdBlock(ad);
         }
     }

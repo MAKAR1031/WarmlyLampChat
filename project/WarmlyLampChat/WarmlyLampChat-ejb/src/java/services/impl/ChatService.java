@@ -1,7 +1,7 @@
 package services.impl;
 
-import dao.AdDAOLocal;
-import dao.ChatDAOLocal;
+import dao.AdDAO;
+import dao.ChatDAO;
 import interceptors.MessageInterceptor;
 import java.util.Date;
 import java.util.List;
@@ -16,11 +16,12 @@ import services.ChatServiceLocal;
 
 @Stateless
 public class ChatService implements ChatServiceLocal {
+
     @EJB
-    private ChatDAOLocal chatDAO;
-    
+    private ChatDAO chatDAO;
+
     @EJB
-    private AdDAOLocal adDAO;
+    private AdDAO adDAO;
 
     @Override
     public void enterToRoom(int idRoom, int idUser) {
@@ -42,13 +43,13 @@ public class ChatService implements ChatServiceLocal {
     @Override
     public void removeRoom(int idRoom) {
         Room room = chatDAO.getRoomById(idRoom);
-        chatDAO.getMessagesByRoom(room).stream().forEach(message ->{
+        chatDAO.getMessagesByRoom(room).stream().forEach(message -> {
             message.setRoom(null);
             chatDAO.removeMessage(message);
         });
         chatDAO.removeRoom(room);
     }
-    
+
     @Override
     @Interceptors(MessageInterceptor.class)
     public void sendMessage(Room room, int idSender, String messageText) {
@@ -82,7 +83,8 @@ public class ChatService implements ChatServiceLocal {
     public Room getRoomById(int id) {
         Room room = chatDAO.getRoomById(id);
         room.setMessages(chatDAO.getMessagesByRoom(room));
-        room.setCurrentAdBlock(adDAO.getAdBlockByEmotionFactor(room.getCurrentMood().getEmotionalFactor()));
+        room.setCurrentAdBlock(adDAO.getAdBlockByEmotionFactor(room
+                .getCurrentMood().getEmotionalFactor()));
         return room;
     }
 }

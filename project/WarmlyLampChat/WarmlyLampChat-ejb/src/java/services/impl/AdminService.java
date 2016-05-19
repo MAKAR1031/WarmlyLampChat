@@ -1,6 +1,6 @@
 package services.impl;
 
-import dao.ChatDAOLocal;
+import dao.ChatDAO;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -12,8 +12,8 @@ import services.AdminServiceLocal;
 public class AdminService implements AdminServiceLocal {
 
     @EJB
-    private ChatDAOLocal chatDAO;
-    
+    private ChatDAO chatDAO;
+
     @Override
     public void addUser(ChatUser user, String role) {
         UserRole userRole = chatDAO.getRoleByName(role);

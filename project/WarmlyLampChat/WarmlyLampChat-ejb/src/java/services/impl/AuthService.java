@@ -1,6 +1,6 @@
 package services.impl;
 
-import dao.ChatDAOLocal;
+import dao.ChatDAO;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -14,7 +14,7 @@ import services.AuthServiceLocal;
 public class AuthService implements AuthServiceLocal {
 
     @EJB
-    private ChatDAOLocal chatDAO;
+    private ChatDAO chatDAO;
 
     @Resource
     private SessionContext sc;
@@ -23,14 +23,15 @@ public class AuthService implements AuthServiceLocal {
     public List<UserRole> getAllRoles() {
         return chatDAO.getAllRoles();
     }
-    
+
     @Override
     public ChatUser getCurrentUser() {
         return chatDAO.getUserByNickName(sc.getCallerPrincipal().getName());
     }
 
     @Override
-    public void registerUser(String fio, String nickName, String password, String roleName) {
+    public void registerUser(String fio, String nickName, String password, 
+            String roleName) {
         UserRole role = chatDAO.getRoleByName(roleName);
         ChatUser user = new ChatUser();
         user.setFio(fio);

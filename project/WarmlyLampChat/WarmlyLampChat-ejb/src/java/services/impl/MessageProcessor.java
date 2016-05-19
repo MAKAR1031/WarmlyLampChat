@@ -1,7 +1,7 @@
 package services.impl;
 
-import dao.AdDAOLocal;
-import dao.ChatDAOLocal;
+import dao.AdDAO;
+import dao.ChatDAO;
 import java.util.List;
 import java.util.Optional;
 import java.util.StringTokenizer;
@@ -18,9 +18,9 @@ import models.chat.Room;
 public class MessageProcessor {
 
     @EJB
-    private AdDAOLocal adDAO;
+    private AdDAO adDAO;
     @EJB
-    private ChatDAOLocal chatDAO;
+    private ChatDAO chatDAO;
 
     private List<KeyWord> keyWords;
 
@@ -46,7 +46,7 @@ public class MessageProcessor {
         }
     }
 
-    public Optional<KeyWord> checkWord(String word) {
+    private Optional<KeyWord> checkWord(String word) {
         return keyWords.stream()
                 .filter(key -> key.getValue().equalsIgnoreCase(word))
                 .findFirst();

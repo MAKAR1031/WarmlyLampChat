@@ -1,6 +1,6 @@
 package services.impl;
 
-import dao.AdDAOLocal;
+import dao.AdDAO;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -13,7 +13,7 @@ import services.ModeratorServiceLocal;
 public class ModeratorService implements ModeratorServiceLocal {
     
     @EJB
-    private AdDAOLocal adDAO;
+    private AdDAO adDAO;
 
     @Override
     public void approveAd(int id) {
