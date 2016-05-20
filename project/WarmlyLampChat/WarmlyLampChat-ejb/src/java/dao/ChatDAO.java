@@ -94,6 +94,7 @@ public class ChatDAO {
         Query query = em.createQuery("SELECT m FROM Message m WHERE m.room=?1",
                 Message.class);
         query.setParameter(1, room);
+        query.setMaxResults(100);
         return query.getResultList();
     }
 
